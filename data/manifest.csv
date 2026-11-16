@@ -1,7 +1,6 @@
 ﻿file,rows,period_column,from,to,summarized_at
 data/raw/kkbox/transactions.csv,21547746,transaction_date,20150101,20170228,2026-11-16 17:28
 data/raw/kkbox/transactions_v2.csv,1431009,transaction_date,20150101,20170331,2026-11-16 17:28
-data/raw/kkbox_mendeley/transactions_v2.csv,1048575,transaction_date,20150101,20170331,2026-11-16 17:28
 data/raw/neis/school_schedule_B10_고등학교.csv,4410,date,20250301,20260228,2026-11-16 17:28
 data/raw/neis/school_schedule_B10_중학교.csv,4052,date,20250301,20260228,2026-11-16 17:28
 data/raw/neis/school_schedule_B10_초등학교.csv,3802,date,20250301,20260228,2026-11-16 17:28
