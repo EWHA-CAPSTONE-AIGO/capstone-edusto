@@ -8,7 +8,7 @@
   #    이미 설정된 환경변수(export ...)가 .env 값보다 우선합니다.
   DART_API_KEY=...    # https://opendart.fss.or.kr  (인증키 신청)
   NEIS_API_KEY=...    # https://open.neis.go.kr     (인증키 신청)
-  ECOS_API_KEY=...    # https://ecos.bok.or.kr/api  (인증키 신청)
+  ECOS_API_KEY=...    # https://ecos.bok.or.kr/api/  (인증키 신청)
   KOSIS_API_KEY=...   # https://kosis.kr/openapi    (활용신청)
 
   # 2) 필요한 것만 실행합니다
@@ -237,7 +237,7 @@ def cmd_neis(a):
 # ---------------------------------------------------------------- ECOS 금리
 def cmd_ecos(a):
     key = need_key("ECOS_API_KEY")
-    # 시장금리(일별) 통계표 817Y002, 국고채 3년 010200000 — ECOS '통계코드 검색'에서 한 번 확인하세요.
+    # 시장금리(일별) 통계표 817Y002, 국고채 3년 010200000 (5년 010200001). 2026-11-16 StatisticItemList로 확인.
     url = (f"https://ecos.bok.or.kr/api/StatisticSearch/{key}/json/kr/1/100000/"
            f"{a.stat}/D/{a.from_}/{a.to}/{a.item}")
     data = json.loads(http_get(url))
@@ -249,20 +249,29 @@ def cmd_ecos(a):
 # ---------------------------------------------------------------- KOSIS
 def cmd_kosis(a):
     key = need_key("KOSIS_API_KEY")
-    # 통계표 ID(tblId)·기관 ID(orgId)는 KOSIS 통계표 화면 URL에서 확인합니다.
-    data = json.loads(http_get(
-        "https://kosis.kr/openapi/Param/statisticsParameterData.do",
-        {"method": "getList", "apiKey": key, "format": "json", "jsonVD": "Y",
-         "orgId": a.org, "tblId": a.tbl, "prdSe": a.prd,
-         "startPrdDe": a.start, "endPrdDe": a.end,
-         "itmId": "ALL", "objL1": "ALL", "objL2": "ALL"}))
+    # 통계표 ID(tblId)는 KOSIS 통계표 검색 API(statisticsSearch.do)나 통계표 화면 URL에서 확인합니다.
+    # 표마다 분류 단계 수가 달라(사교육비 1단계, 추계인구 3단계) 메타 정보로 단계 수를 먼저 셉니다.
+    # 없는 단계를 넘기면 err 21, 있는 단계를 빠뜨리면 err 20이 납니다.
+    meta = json.loads(http_get(
+        "https://kosis.kr/openapi/statisticsData.do",
+        {"method": "getMeta", "type": "ITM", "apiKey": key, "format": "json", "jsonVD": "Y",
+         "orgId": a.org, "tblId": a.tbl}))
+    if isinstance(meta, dict) and meta.get("err"):
+        sys.exit(f"[KOSIS 메타 오류] {meta}")
+    levels = len({r["OBJ_ID"] for r in meta if r.get("OBJ_ID") != "ITEM"})
+    params = {"method": "getList", "apiKey": key, "format": "json", "jsonVD": "Y",
+              "orgId": a.org, "tblId": a.tbl, "prdSe": a.prd,
+              "startPrdDe": a.start, "endPrdDe": a.end, "itmId": "ALL"}
+    params.update({f"objL{i}": "ALL" for i in range(1, levels + 1)})
+    data = json.loads(http_get("https://kosis.kr/openapi/Param/statisticsParameterData.do", params))
     if isinstance(data, dict) and data.get("err"):
         sys.exit(f"[KOSIS 오류] {data}")
     write_csv(RAW / "kosis" / f"{a.org}_{a.tbl}.csv", data)
 
 
 # ---------------------------------------------------------------- 요약 (manifest)
-DATE_HINTS = ("date", "time", "ymd", "transaction_date", "membership_expire_date", "year")
+DATE_HINTS = ("date", "time", "ymd", "transaction_date", "membership_expire_date", "year",
+              "prd_de")  # prd_de: KOSIS 수록 시점
 
 
 def _num(v: str) -> float | None:

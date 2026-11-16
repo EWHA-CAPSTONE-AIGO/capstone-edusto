@@ -13,11 +13,11 @@
 | 4 | OpenDART 교육사 분기 매출 | `scripts/collect_public_data.py dart` | `DART_API_KEY` | 유형별 계절성 실측 대조 | A·B·C | 높음 |
 | 5 | NEIS 학사일정 | `scripts/collect_public_data.py neis` | `NEIS_API_KEY` | F3 계절성 변수 | A·B | 높음 |
 | 6 | EdNet KT4 | https://github.com/riiid/ednet 의 KT4 링크 | Google Drive 다운로드, CC BY-NC 4.0 | 유형 C 구매·이용 패턴 | C | 중간 |
-| 7 | KOSIS 사교육비조사·장래인구추계 | `scripts/collect_public_data.py kosis --org --tbl` | `KOSIS_API_KEY`, 통계표 ID TODO(확인) | F2 기준, 모의데이터 분포 | A·B | 중간 |
+| 7 | KOSIS 사교육비조사·장래인구추계 | `scripts/collect_public_data.py kosis --org --tbl` | `KOSIS_API_KEY`. 통계표 ID 2026-11-16 확인(orgId 101): 사교육비 학년별 참여율 DT_1PE102_1~3, 학년별 1인당 월평균 DT_1PE101_1~3, 학년별 총액 DT_1PE003_1~3, 학교급별 참여율 DT_1PE102, 추계인구 1세별 DT_1BPA001 | F2 기준, 모의데이터 분포 | A·B | 중간 |
 | 8 | 교육기본통계 학년별 학생 수 | 교육통계서비스 엑셀 | 없음 | F2 모수, 코호트 크기 | A·B | 중간 |
 | 9 | 수능·모의평가 지원 현황 | 평가원 보도자료 | 없음 | B 모수 | B | 중간 |
 | 10 | KDD Cup 2015 (XuetangX) | https://data-mining.philippe-fournier-viger.com/?p=1074 | 이용 조건 TODO(확인) | 보조 검증 | B·C | 낮음 |
-| 11 | ECOS 국고채 금리 | `scripts/collect_public_data.py ecos` | `ECOS_API_KEY`, 통계 코드 817Y002 TODO(확인) | F5 할인율 참고선 | 공통 | 낮음 |
+| 11 | ECOS 국고채 금리 | `scripts/collect_public_data.py ecos` | `ECOS_API_KEY`, 통계 코드 817Y002(시장금리 일별)·항목 010200000(국고채 3년) 2026-11-16 확인. 5년은 010200001 | F5 할인율 참고선 | 공통 | 낮음 |
 | 12 | Q-Net 시험일정·종목 목록 | 공공데이터포털 활용신청 | `DATA_GO_KR_KEY` | C 종료 시점 | C | 낮음 |
 | 13 | 9급 공채 통계 | 사이버국가고시센터 시험 통계 | 없음 | C 모수 | C | 낮음 |
 | 14 | 평생학습 참여율 | e-나라지표 / KOSIS | 없음 | D 모수 | D | 낮음 |
