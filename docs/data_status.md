@@ -8,8 +8,9 @@
 | OULAD studentRegistration | 32,593 | 2013B ~ 2014J 4개 학기 (개강일 기준 −322 ~ +167일) | 과정 종료형 이탈, F4 검증 (B·C) |
 | OULAD studentInfo | 32,593 (학생 28,785명) | 2013B ~ 2014J | 최종 결과(합격·불합격·중도 포기 10,156건)로 종료 vs 해지 구분 |
 | OULAD studentVle 외 5개 표 | 10,655,280 (studentVle) 등 | 2013B ~ 2014J | 이용 활동량 → 이탈 전조 보조 지표 |
-| OpenDART 교육사 분기 매출 | 대기 (API 키 필요) | 2023 ~ 2026 | 유형별 계절성 실측 대조 (A·B·C) |
-| NEIS 학사일정 (서울 초·중·고 각 20개교) | 대기 (API 키 필요) | 2025-03 ~ 2026-02 | F3 계절성 변수 (A·B) |
-| KKBox 거래 (Kaggle 원본 transactions.csv) | 대기 (Kaggle 계정·대회 규칙 동의 필요) | 2015-01 ~ 2017-02 TODO(확인) | F3 24개월 코호트·백테스트 뼈대 |
+| OpenDART 교육사 분기 매출 (7개사) | 112 (회사×분기) | 2023 Q1 ~ 2026 Q3 (2026 Q3는 일부 회사만 공시) | 유형별 계절성 실측 대조 (A·B·C) |
+| NEIS 학사일정 (서울 초 19·중 20·고 20개교) | 12,264 (초 3,802 / 중 4,052 / 고 4,410) | 2025-03-01 ~ 2026-02-28 | F3 계절성 변수 (A·B) |
+| KKBox 거래 (Kaggle 원본 transactions.csv) | 21,547,746 (사용자 2,363,626명) | 2015-01-01 ~ 2017-02-28 (26개월) | F3 24개월 코호트·백테스트 뼈대 (A·B·D). 주 데이터 |
+| KKBox 거래 (Kaggle 원본 transactions_v2.csv) | 1,431,009 (사용자 1,197,050명) | 2015-01-01 ~ 2017-03-31 (2017-03이 107만 행) | 2017-03 갱신분. 잘리지 않은 판으로 Mendeley 사본 대체 |
 
-라이선스: KKBox Mendeley 사본 CC BY 4.0, OULAD CC BY 4.0 (UCI dataset 349).
+라이선스: KKBox Kaggle 원본은 WSDM 대회 규칙(대회 규칙 7. COMPETITION DATA 참고), Mendeley 사본 CC BY 4.0, OULAD CC BY 4.0 (UCI dataset 349).

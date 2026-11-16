@@ -12,6 +12,7 @@
 | 2026-11-16 | STO 시행일 표기를 2027-02-04로 정정 | 2026-02-03 공포, 공포 후 1년 시행 |
 | 2026-11-16 | KKBox는 Kaggle 원본 `transactions.csv`를 주 데이터로 유지. Mendeley 사본(CC BY 4.0)은 임시 표본으로만 사용 | Mendeley 사본이 엑셀 행 한도(1,048,575행)에서 잘렸고 2017-03 갱신분 중심이라 24개월 코호트에 부족 |
 | 2026-11-16 | OULAD 받는 곳을 UCI 저장소(dataset 349)로 변경 | 원래 주소가 OU Analyse 첫 화면으로 이동. UCI 판은 같은 7개 CSV, CC BY 4.0 |
+| 2026-11-16 | 협업 컨벤션(브랜치·커밋·PR) 도입, `develop` 없이 `feature/*`·`hotfix/*` → `main` 직접 PR. PR 템플릿 추가 | 팀 결정. 규칙은 `README.md`, 템플릿은 `.github/pull_request_template.md` |
 
 ## 일정이 밀릴 때 줄이는 순서
 1. 유형 C·D의 서비스 수준 지원 (A·B 우선)
