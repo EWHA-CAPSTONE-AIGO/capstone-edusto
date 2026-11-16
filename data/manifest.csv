@@ -1,0 +1,9 @@
+﻿file,rows,period_column,from,to,summarized_at
+data/raw/kkbox_mendeley/transactions_v2.csv,1048575,transaction_date,20150101,20170331,2026-11-16 16:43
+data/raw/oulad/assessments.csv,206,date,12,261,2026-11-16 16:43
+data/raw/oulad/courses.csv,22,,,,2026-11-16 16:43
+data/raw/oulad/studentAssessment.csv,173912,date_submitted,-11,608,2026-11-16 16:43
+data/raw/oulad/studentInfo.csv,32593,,,,2026-11-16 16:43
+data/raw/oulad/studentRegistration.csv,32593,date_registration,-322,167,2026-11-16 16:43
+data/raw/oulad/studentVle.csv,10655280,date,-25,269,2026-11-16 16:43
+data/raw/oulad/vle.csv,6364,,,,2026-11-16 16:43
