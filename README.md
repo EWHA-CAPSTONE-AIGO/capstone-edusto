@@ -7,17 +7,25 @@
 ### 1. 브랜치 전략
 
 ```
-main ← feature/#이슈번호-페이지-작업설명-타입
-main ← hotfix/#이슈번호-페이지-작업설명
+main ← develop ← feature/#이슈번호-페이지-작업설명-타입
+main ← hotfix/#이슈번호-페이지-작업설명  (병합 후 develop에도 반영)
 ```
 
 | 브랜치 | 용도 |
 | --- | --- |
-| `main` | 배포용 (프로덕션) |
-| `feature/*` | 기능 개발 브랜치 (`main`에서 분기 → `main`으로 PR) |
-| `hotfix/*` | 긴급 수정 브랜치 (`main`에서 분기 → `main`으로 PR) |
+| `main` | 배포용 (프로덕션). 배포할 때만 `develop` → `main` PR로 갱신 |
+| `develop` | 개발 통합 브랜치, **저장소 기본(default) 브랜치** |
+| `feature/*` | 기능 개발 브랜치 (`develop`에서 분기 → `develop`으로 PR) |
+| `hotfix/*` | 배포본 긴급 수정 브랜치 (`main`에서 분기 → `main`으로 PR → `main`을 `develop`에 병합) |
 
-- `main` 브랜치에는 **직접 push 금지**, PR을 통해서만 병합합니다.
+- `main`과 `develop`에는 **직접 push 금지**, PR을 통해서만 병합합니다.
+- 작업 시작 전에 `develop`을 최신으로 받은 뒤 분기합니다.
+
+```
+git switch develop
+git pull origin develop
+git switch -c feature/#이슈번호-페이지-작업설명-타입
+```
 
 ### 2. 브랜치 네이밍
 
@@ -115,8 +123,10 @@ PR을 열면 [`.github/pull_request_template.md`](.github/pull_request_template.
 
 **규칙**
 
+- `feature/*` PR의 대상(base) 브랜치는 `develop`입니다. 기본 브랜치가 `develop`이라 PR을 열면 자동으로 선택됩니다
+- 배포 PR은 `develop` → `main`, 제목은 `Release: 배포 내용`으로 씁니다
 - PR 제목에 이슈 키를 포함하면 PR 상태 자동 추적
-- 본문에 `Close #이슈번호`를 적으면 `main`에 병합될 때 이슈가 자동으로 닫힙니다
+- 본문에 `Close #이슈번호`를 적으면 기본 브랜치(`develop`)에 병합될 때 이슈가 자동으로 닫힙니다
 
 ### 5. 이슈
 
